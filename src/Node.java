@@ -1,10 +1,16 @@
+import communication.NodeCommunication;
+
 
 public abstract class Node {
 
 	protected int id;
 	protected NodeCommunication commBehaviour;
 	
-	public void perfomCommunication(){
+	public void performReceive() {
 	//TODO
+	}
+	
+	public void performSend() {
+		
 	}
 }

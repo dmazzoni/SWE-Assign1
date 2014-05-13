@@ -1,3 +1,5 @@
+import communication.RxNode;
+
 
 public class Monitor extends Node {
 

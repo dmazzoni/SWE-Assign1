@@ -1,3 +1,5 @@
+import communication.TxNode;
+
 
 public class Detector extends Node {
 	

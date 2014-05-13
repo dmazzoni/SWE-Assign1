@@ -1,3 +1,4 @@
+import communication.TxRxNode;
 import computation.*;
 
 public class Processor extends Node {
