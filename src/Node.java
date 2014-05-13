@@ -6,7 +6,11 @@ public abstract class Node {
 	protected int id;
 	protected NodeCommunication commBehaviour;
 	
-	public void performCommunication() {
+	public void performReceive() {
 		//TODO
+	}
+	
+	public void performSend() {
+		
 	}
 }
