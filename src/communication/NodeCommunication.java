@@ -2,5 +2,6 @@ package communication;
 
 public interface NodeCommunication {
 
-	public void communicate();
+	public void receive();
+	public void send();
 }
