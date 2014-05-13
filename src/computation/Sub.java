@@ -1,6 +1,9 @@
 package computation;
 
-public interface Sub {
+public class Sub implements NodeComputation {
 
-	public void sub();
+	@Override
+	public int binaryOp(int op1, int op2) {
+		return op1 - op2;
+	}
 }

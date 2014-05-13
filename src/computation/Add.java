@@ -1,6 +1,9 @@
 package computation;
 
-public interface Add {
+public class Add implements NodeComputation {
 
-	public void add();
+	@Override
+	public int binaryOp(int op1, int op2) {
+		return op1 + op2;
+	}
 }

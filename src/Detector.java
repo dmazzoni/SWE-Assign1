@@ -1,17 +1,16 @@
 
-public class Detector {
+public class Detector extends Node {
 	
-	Processor processingUnit;
-	
-	public Detector(Processor p) {
-		processingUnit = p;
+	public Detector() {
+		id = 1;
+		commBehaviour = new TxNode();
 	}
 
 	public void carEnters() {
-		processingUnit.add();
+		
 	}
 	
 	public void carExits() {
-		processingUnit.sub();
+		
 	}
 }

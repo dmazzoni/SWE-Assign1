@@ -1,35 +1,26 @@
 import computation.*;
-import java.util.Vector;
 
-public class Processor implements Add, Sub {
+public class Processor extends Node {
 
-	Vector<Monitor> monitors;
 	int parkedCars;
 	float averageCars;
+	Add adder;
+	Sub subtracter;
 	
 	static final int totalSpots = 500;
 	
-	public Processor(Vector<Monitor> m) {
-		this.monitors = m;
+	public Processor() {
+		id = 2;
+		commBehaviour = new TxRxNode();
 		parkedCars = 0;
 		averageCars = 0.0f;
 	}
 
-	@Override
-	public void sub() {
-		parkedCars--;
-		notifyMonitors();
+	public void subtractCar() {
+		subtracter.binaryOp(parkedCars, 1);
 	}
 
-	@Override
-	public void add() {
-		parkedCars++;
-		notifyMonitors();
-	}
-	
-	private void notifyMonitors() {
-		for (Monitor m : monitors) {
-			//TODO
-		}
+	public void addCar() {
+		adder.binaryOp(parkedCars, 1);
 	}
 }
