@@ -1,17 +1,12 @@
 package communication;
 
+
 public class RxNode implements NodeCommunication {
 
 	@Override
-	public void receive() {
+	public void communicate() {
 		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void send() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
