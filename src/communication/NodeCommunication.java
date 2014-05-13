@@ -1,3 +1,4 @@
+package communication;
 
 public interface NodeCommunication {
 

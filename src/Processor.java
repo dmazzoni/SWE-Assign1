@@ -1,13 +1,14 @@
+import communication.TxRxNode;
 import computation.*;
 
 public class Processor extends Node {
 
-	int parkedCars;
-	float averageCars;
-	Add adder;
-	Sub subtracter;
+	private int parkedCars;
+	private float averageCars;
+	private Add adder;
+	private Sub subtracter;
 	
-	static final int totalSpots = 500;
+	private static final int totalSpots = 500;
 	
 	public Processor() {
 		id = 2;

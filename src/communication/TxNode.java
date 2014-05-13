@@ -1,5 +1,7 @@
+package communication;
 
-public class TxRxNode implements NodeCommunication {
+
+public class TxNode implements NodeCommunication {
 
 	@Override
 	public void communicate() {
