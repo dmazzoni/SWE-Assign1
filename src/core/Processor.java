@@ -5,16 +5,24 @@ import computation.*;
 public class Processor extends Node {
 
 	private int parkedCars;
+	private int traffic;
+	private int hours;
 	private float averageCars;
 	private Add adder;
 	private Sub subtracter;
+	private Average avg;
 	
-	private static final int totalSpots = 500;
+	private static final int totalSlots = 500;
 	
 	public Processor(int id, CommunicationChannel channel) {
 		this.id = id;
 		commBehaviour = new TxRxNode(channel, this);
+		adder = new Add();
+		subtracter = new Sub();
+		avg = new Average();
 		parkedCars = 0;
+		traffic = 0;
+		hours = 0;
 		averageCars = 0.0f;
 	}
 
@@ -33,12 +41,25 @@ public class Processor extends Node {
 	public void performSend(int dest, float data) {
 		commBehaviour.send(dest, data);
 	}
-
+	
+	public void hourPassed() {
+		hours = (int) adder.binaryOp(hours, 1);
+		averageCars = avg.binaryOp(traffic, hours);
+		performSend(3, averageCars);
+	}
+	
 	private void subtractCar() {
-		subtracter.binaryOp(parkedCars, 1);
+		parkedCars = (int) subtracter.binaryOp(parkedCars, 1);
+		updateFreeSlots();
 	}
 
 	private void addCar() {
-		adder.binaryOp(parkedCars, 1);
+		parkedCars = (int) adder.binaryOp(parkedCars, 1);
+		updateFreeSlots();
+	}
+	
+	private void updateFreeSlots() {
+		traffic = (int) adder.binaryOp(traffic, 1);
+		performSend(4, subtracter.binaryOp(totalSlots, parkedCars));
 	}
 }
