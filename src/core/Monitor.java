@@ -1,12 +1,17 @@
 package core;
 
+import javax.swing.JLabel;
+
 import communication.*;
 
 public class Monitor extends Node {
+	
+	private JLabel label;
 
-	public Monitor(int id, CommunicationChannel channel) {
+	public Monitor(int id, CommunicationChannel channel, JLabel label) {
 		this.id = id;
 		commBehaviour = new RxNode(channel, this);
+		this.label = label;
 	}
 
 	@Override
@@ -23,7 +28,7 @@ public class Monitor extends Node {
 	}
 	
 	private void display(float data) {
-		System.out.println("Monitor " + id + ": " + data);
+		label.setText(data + "");
 	}
 
 }

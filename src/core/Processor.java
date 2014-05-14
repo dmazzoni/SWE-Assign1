@@ -12,7 +12,7 @@ public class Processor extends Node {
 	private Sub subtracter;
 	private Average avg;
 	
-	private static final int totalSlots = 500;
+	protected static final int totalSlots = 500;
 	
 	public Processor(int id, CommunicationChannel channel) {
 		this.id = id;
@@ -49,8 +49,10 @@ public class Processor extends Node {
 	}
 	
 	private void subtractCar() {
-		parkedCars = (int) subtracter.binaryOp(parkedCars, 1);
-		updateFreeSlots();
+		if (parkedCars > 0) {
+			parkedCars = (int) subtracter.binaryOp(parkedCars, 1);
+			updateFreeSlots();
+		}
 	}
 
 	private void addCar() {
@@ -59,7 +61,8 @@ public class Processor extends Node {
 	}
 	
 	private void updateFreeSlots() {
+		int freeSlots = (int) subtracter.binaryOp(totalSlots, parkedCars);
 		traffic = (int) adder.binaryOp(traffic, 1);
-		performSend(4, subtracter.binaryOp(totalSlots, parkedCars));
+		performSend(4, freeSlots < 0 ? 0 : freeSlots);
 	}
 }

@@ -4,11 +4,9 @@ import core.Node;
 
 public class RxNode implements NodeCommunication {
 	
-	private CommunicationChannel channel;
 	private Node parent;
 	
 	public RxNode(CommunicationChannel channel, Node parent) {
-		this.channel = channel;
 		this.parent = parent;
 		channel.subscribe(this);
 	}
